@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container-fluid">
+  <form action="{{ url_for('edit', task_id=task_id) }}" method="post">
+    {{ form.csrf_token }}
+    <div class="row">
+      <div class="col">
+        <h3>Edit Task</h3>
+        <div class="col">
+          {{ form.title(class="form-control", value=form.title.data) }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3>Edit Desc</h3>
+        <div class="col">
+          {{ form.desc(class="form-control") }}
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

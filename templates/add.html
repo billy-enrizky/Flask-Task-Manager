@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container-fluid">
+  <form action="{{ url_for('add') }}" method="post">
+    {{ form.csrf_token }}
+    <div class="row">
+      <h3>Add Task</h3>
+      <div class="col">
+        {{ form.title(class="form-control") }}
+      </div>
+    </div>
+    <div class="row">
+      <h3>Add Desc</h3>
+      <div class="col">
+        {{ form.desc(class="form-control")}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

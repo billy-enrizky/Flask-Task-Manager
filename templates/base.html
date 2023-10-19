@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+      /* Additional CSS styles */
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .container-fluid {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 36px;
+        color: #343a40;
+        margin-bottom: 30px;
+      }
+
+      .alert {
+        animation: fade-in 1s;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .task-card {
+        position: relative;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .task-card::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: #007bff;
+        border-radius: 50%;
+      }
+
+      .task-card::after {
+        content: "";
+        position: absolute;
+        top: calc(50% + 20px);
+        left: 20px;
+        width: 2px;
+        height: calc(100% - 80px);
+        background-color: #007bff;
+      }
+    </style>
+
+    <title>Task Manager</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link">Tasks</a></li>
+          <li class="nav-item"><a href="{{ url_for('add') }}" class="nav-link">Add New</a></li>
+        </ul>
+      </nav>
+      <br>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-primary">
+            {{ message }}
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <br>
+      <h1 class="animate__animated animate__bounceIn">Task Manager</h1> <!-- Added h1 element with the title and animation class -->
+      <br>
+      {% block main %}
+        <div class="task-card animate__animated animate__fadeInUp">
+          <!-- Task content goes here -->
+        </div>
+      {% endblock %}
+    </div>
+
+    <!-- Additional scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+  </body>
+</html>
