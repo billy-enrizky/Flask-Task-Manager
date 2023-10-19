@@ -1,126 +1,50 @@
-# Create Your First Web App with Python and Flask
+# Task Manager Using Flask
+# Project README
 
-This is a beginner's guide to creating a simple web application using Python and Flask. Flask is a lightweight web framework that allows you to build web applications quickly and easily. By following this guide, you will learn how to set up a basic Flask application, create routes, handle HTTP requests, and render HTML templates.
+This project consists of a simple task manager web application developed using Flask, a micro web framework for Python. The application allows users to manage tasks, including adding, editing, and deleting tasks. It utilizes SQLAlchemy as an Object-Relational Mapping (ORM) tool to interact with a SQLite database.
 
-## Prerequisites
+## Project Structure
 
-Before getting started, make sure you have the following installed on your machine:
+The project includes several files and directories:
 
-- Python (version 3.6 or higher)
-- Flask (you can install it using pip: `pip install flask`)
+### app.py
 
-## Getting Started
+This is the main Python script that initializes the Flask application. It configures the secret key and database URI, sets up the SQLAlchemy database, and imports the routes from the `routes.py` file. The Flask app is run with debugging enabled when this script is executed.
 
-1. Create a new directory for your project.
-2. Open a command prompt or terminal and navigate to the project directory.
-3. Create a virtual environment (optional but recommended) by running the following command:
+### forms.py
 
-   ```shell
-   python -m venv venv
-   ```
+This file defines Flask-WTF forms used in the application for user input. It includes forms for adding and editing tasks. These forms handle data validation and submission.
 
-4. Activate the virtual environment:
+### models.py
 
-   - For Windows:
+The `models.py` file defines the database model used in the application. It includes a `Task` class with attributes such as `id`, `title`, `date`, and `desc` to represent tasks. This class is used for creating and querying the database.
 
-     ```shell
-     venv\Scripts\activate
-     ```
+### routes.py
 
-   - For macOS/Linux:
+In `routes.py`, you'll find the routes and views for the Flask application. It defines routes for displaying the task list, adding tasks, editing tasks, and deleting tasks. Views are implemented using Flask's render_template function.
 
-     ```shell
-     source venv/bin/activate
-     ```
+### Templates (HTML files)
 
-5. Create a new Python file called `app.py` in the project directory.
+Several HTML templates are used to render the web pages. They include:
 
-## Setting Up the Flask Application
+- **base.html:** The base template for all pages. It includes navigation links and handles message flashing.
+- **add.html:** The template for adding a new task.
+- **delete.html:** The template for confirming task deletion.
+- **edit.html:** The template for editing an existing task.
+- **index.html:** The main page displaying the list of tasks.
 
-Open `app.py` in a text editor and add the following code:
+## Usage
 
-```python
-from flask import Flask
+To run the project:
 
-app = Flask(__name__)
+1. Ensure you have Python and the required libraries installed.
+2. Open your command-line interface.
+3. Navigate to the project directory.
+4. Execute `python app.py`.
+5. Open a web browser and access the application at `http://127.0.0.1:5000/`.
 
-@app.route('/')
-def hello():
-    return 'Hello, World!'
+## Dependencies
 
-if __name__ == '__main__':
-    app.run()
-```
-
-This code sets up a basic Flask application with a single route `/` that returns the string `'Hello, World!'` when accessed.
-
-## Running the Application
-
-To run the Flask application, make sure you are still in the project directory and the virtual environment is activated. Then, run the following command:
-
-```shell
-python app.py
-```
-
-You should see an output similar to:
-
-```
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-```
-
-This means your Flask application is running locally on `http://127.0.0.1:5000/`.
-
-Open your web browser and navigate to `http://127.0.0.1:5000/`. You should see the message "Hello, World!" displayed in your browser.
-
-## Creating Routes and Handling Requests
-
-Flask allows you to create multiple routes to handle different URLs. Let's add a new route to handle a "About" page.
-
-Add the following code to `app.py`:
-
-```python
-@app.route('/about')
-def about():
-    return 'This is the About page.'
-```
-
-Save the file and restart the Flask application if it's still running. Now, when you navigate to `http://127.0.0.1:5000/about`, you should see the message "This is the About page." displayed in your browser.
-
-## Rendering HTML Templates
-
-While returning plain text from routes is useful for simple responses, Flask also allows you to render HTML templates to create more complex web pages. Let's create an HTML template for the "About" page.
-
-1. Create a new directory called `templates` in your project directory.
-2. Inside the `templates` directory, create a new file called `about.html`.
-3. Open `about.html` and add the following code:
-
-   ```html
-   <!doctype html>
-   <html>
-     <head>
-       <title>About</title>
-     </head>
-     <body>
-       <h1>About</h1>
-       <p>This is the About page.</p>
-     </body>
-   </html>
-   ```
-
-4. Modify the `about` route in `app.py` to render the `about
-
-.html` template:
-
-   ```python
-   from flask import render_template
-
-   @app.route('/about')
-   def about():
-       return render_template('about.html')
-   ```
-
-Save both files and restart the Flask application. Now, when you navigate to `http://127.0.0.1:5000/about`, you should see the HTML page with the title "About" and the content "This is the About page."
-
-## Conclusion
-
-Congratulations! You have created your first web application using Python and Flask. You learned how to set up a basic Flask application, create routes to handle different URLs, handle HTTP requests, and render HTML templates. This is just the beginning, and Flask offers many more features to explore and build powerful web applications. Keep experimenting and learning, and enjoy building your web apps with Python and Flask!
+- Flask: A micro web framework for Python.
+- Flask-WTF: An integration of the WTForms library for Flask.
+- SQLAlchemy: A SQL toolkit and Object-Relational Mapping (ORM) library.
